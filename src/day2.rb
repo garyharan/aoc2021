@@ -5,13 +5,15 @@ module Year2021
       output = parse(filename).inject({depth: 0, horizontal: 0}) do |acc, line|
         /^(?<direction>\w+)\W(?<change>\d+)$/ =~ line
 
+        change = change.to_i
+
         case direction
         when 'forward'
-          acc[:horizontal] += change.to_i
+          acc[:horizontal] += change
         when 'down'
-          acc[:depth] += change.to_i
+          acc[:depth] += change
         when 'up'
-          acc[:depth] -= change.to_i
+          acc[:depth] -= change
         end
 
         acc
@@ -24,14 +26,16 @@ module Year2021
       output = parse(filename).inject({depth: 0, horizontal: 0, aim: 0}) do |acc, line|
         /^(?<direction>\w+)\W(?<change>\d+)$/ =~ line
 
+        change = change.to_i
+
         case direction
         when 'forward'
-          acc[:horizontal] += change.to_i
-          acc[:depth]      += (acc[:aim] * change.to_i)
+          acc[:horizontal] += change
+          acc[:depth]      += (acc[:aim] * change)
         when 'down'
-          acc[:aim] += change.to_i
+          acc[:aim] += change
         when 'up'
-          acc[:aim] -= change.to_i
+          acc[:aim] -= change
         end
 
         acc
